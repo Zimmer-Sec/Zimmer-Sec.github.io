@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kyle Zimmer — Portfolio</title>
+  <meta name="description" content="Cybersecurity portfolio showcasing red team projects, lab write-ups, talks, and research by Kyle Zimmer." />
+  <meta name="author" content="Kyle Zimmer" />
+  <meta property="og:title" content="Kyle Zimmer — Cybersecurity Portfolio" />
+  <meta property="og:description" content="Red teaming, security research, labs, and practical write-ups." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --card: #121826;
+      --text: #e6edf6;
+      --muted: #9fb0c9;
+      --accent: #7cc4ff;
+      --accent-2: #9af9d8;
+      --border: #1e2a3d;
+      --code: #0f1724;
+      --link: #b6d7ff;
+      --warn: #ffcd70;
+      --ok: #6ff3c1;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height:1.6;}
+    a{ color: var(--link); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+    .container{ max-width: 1100px; margin: 0 auto; padding: 24px; }
+    header{ position: sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,15,23,.85); border-bottom:1px solid var(--border); z-index: 50; }
+    nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    nav .right a{ margin-left: 14px; padding:8px 12px; border:1px solid var(--border); border-radius: 999px; }
+    nav .right a:hover{ background: var(--card); text-decoration: none; }
+    h1,h2,h3{ line-height:1.25; margin: 0 0 10px 0; }
+    h1{ font-size: clamp(28px, 4vw, 44px); }
+    h2{ font-size: clamp(22px, 3vw, 30px); margin-top: 40px; }
+    p.lead{ font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); margin: 8px 0 0 0; }
+    .hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center; padding-top: 28px;}
+    .card{ background: var(--card); border:1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); }
+    .pad{ padding: 20px; }
+    .badges{ display:flex; flex-wrap: wrap; gap:10px; margin-top: 8px;}
+    .badge{ background: #0d1422; border:1px solid var(--border); padding:6px 10px; border-radius:999px; color:var(--muted); }
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    .col-12{ grid-column: span 12; }
+    .list{ display:flex; flex-direction: column; gap: 12px; }
+    .item{ padding:14px; border:1px solid var(--border); border-radius:14px; background: #0c121f; }
+    .item h3{ margin-bottom: 4px; }
+    .meta{ color: var(--muted); font-size: 14px; }
+    .kbd{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background: var(--code); border:1px solid var(--border); padding: 2px 6px; border-radius: 6px; }
+    footer{ margin: 40px 0 20px; color: var(--muted); border-top:1px solid var(--border); padding-top: 18px; }
+    .pill{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding: 10px 14px; border-radius: 12px; }
+    .btn{ display:inline-block; padding:10px 14px; border:1px solid var(--border); border-radius:12px; background: #0c141f; }
+    .btn:hover{ background:#0f1726; text-decoration:none; }
+    .two{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .video{ aspect-ratio: 16/9; width:100%; border:1px solid var(--border); border-radius:14px; background:#000; }
+    .timeline{ border-left:2px solid var(--border); padding-left: 16px; }
+    .timeline .t{ margin-bottom: 12px; }
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+      .col-6{ grid-column: span 12; }
+      .col-4{ grid-column: span 12; }
+      nav{ flex-wrap:wrap; gap:8px; }
+    }
+    @media print {
+      header, .btn, .video { display: none !important; }
+      body { background: #fff; color:#111; }
+      .card { box-shadow: none; }
+      a { color: #000; text-decoration: underline; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav aria-label="Primary">
+        <div class="left">
+          <span class="pill">🛡️ <strong>Kyle Zimmer</strong> — Portfolio</span>
+        </div>
+        <div class="right" role="navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#labs">Labs</a>
+          <a href="#writeups">Write-ups</a>
+          <a href="#talks">Talks</a>
+          <a href="#certs">Certs</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card pad">
+        <h1>Red Team–minded Cybersecurity Analyst</h1>
+        <p class="lead">
+          Years of experience and military service, preparing for civilian life. Focused on red teaming, adversary emulation,
+          and practical security research.
+        </p>
+        <div class="badges" aria-label="Technical focus areas">
+          <span class="badge">Adversary Emulation</span>
+          <span class="badge">Cloud</span>
+          <span class="badge">Web App Security</span>
+          <span class="badge">Linux & Networking</span>
+        </div>
+        <p style="margin-top:14px">
+          <a class="btn" href="https://www.linkedin.com/in/kyle-zimmer-034060234/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
+        </p>
+      </div>
+      <aside class="card pad">
+        <h2 id="about">About</h2>
+        <p>
+          Headstrong. My current interests include building realistic attack chains in virtual environments and producing
+          concise write-ups with actionable remediations.
+        </p>
+        <ul class="list" aria-label="Quick facts">
+          <li class="item">
+            <strong>Target roles:</strong> Red Team Operator, Security Engineer (Offensive), Adversary Emulation
+          </li>
+          <li class="item">
+            <strong>Currently learning:</strong> C2 frameworks, attack paths, malware analysis
+          </li>
+          <li class="item">
+            <strong>Writing focus:</strong> Practical lab notes and concise threat reports
+          </li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="grid">
+        <article class="col-6 card pad">
+          <h3>Adversary Emulation: <span class="meta">“FIN-style” web app intrusion chain</span></h3>
+          <p>Multi-stage engagement against an Azure-hosted app: discovery → initial access via misconfig → lateral movement using token replay → exfiltration. Full ATT&CK mapping and detections.</p>
+          <p class="meta">Stack: Python, Azure, Burp/ZAP, BloodHound/ARO</p>
+          <p>
+            <a class="btn" href="#" aria-label="Read the project case study">Case Study</a>
+            <a class="btn" href="#" aria-label="View the source on GitHub">GitHub</a>
+          </p>
+        </article>
+        <article class="col-6 card pad">
+          <h3>Detection Evasion Lab: <span class="meta">EDR-safe simulation</span></h3>
+          <p>Built a home lab to evaluate common tradecraft (LOLBins, AMSI bypass research review) with benign payloads, documenting telemetry and defender guidance.</p>
+          <p class="meta">Stack: Windows, Sysmon, Sigma, KQL</p>
+          <p>
+            <a class="btn" href="#" aria-label="Read the lab write-up">Write-up</a>
+            <a class="btn" href="#" aria-label="Open the lab repo">GitHub</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="labs">
+      <h2>Lab Portfolio</h2>
+      <div class="grid">
+        <div class="col-4 card pad">
+          <h3>Azure Attack Paths</h3>
+          <p>Enumerated conditional access gaps and role misassignments; documented blast radius and mitigations.</p>
+        </div>
+        <div class="col-4 card pad">
+          <h3>Web Vuln Deep-dive</h3>
+          <p>From ZAP reconnaissance to chained authz bypass; included reproducible steps and screenshots.</p>
+        </div>
+        <div class="col-4 card pad">
+          <h3>Linux Priv-Esc Pathfinding</h3>
+          <p>Kernel and misconfig scenarios.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="writeups">
+      <h2>Write-ups & Research Notes</h2>
+      <div class="list">
+        <article class="item">
+          <h3>Threat Report: Small-biz Azure posture pitfalls</h3>
+          <p>Observed misconfig patterns and prioritized remediations. Executive summary + technical appendix.</p>
+          <p class="meta">Reading time: 6 min · <span class="kbd">PDF</span></p>
+        </article>
+        <article class="item">
+          <h3>From Recon to Impact in a Lab Tenant</h3>
+          <p>Walkthrough with detections (KQL/Sigma), ATT&CK mapping, and blue-teamable artifacts.</p>
+          <p class="meta">Reading time: 8 min · <span class="kbd">Post</span></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="talks" class="two">
+      <div>
+        <h2>Talks & Videos</h2>
+        <p> To come... Add short demo videos or conference lightning talks.</p>
+        <div class="video" role="img" aria-label="YouTube video placeholder">
+          <!-- Replace with your embed:
+          <iframe class="video" src="https://www.youtube.com/embed/VIDEO_ID" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+          -->
+        </div>
+      </div>
+      <aside class="card pad">
+        <h3>Speaking Topics</h3>
+        <ul>
+          <li>Adversary emulation for small teams</li>
+          <li>Practical ATT&CK mapping for executives</li>
+          <li>Building a home red team lab safely</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="certs">
+      <h2>Certifications & Skills</h2>
+      <div class="grid">
+        <div class="col-6 card pad">
+          <h3>Certifications</h3>
+          <ul>
+            <li>Comptia: Security+</li>
+			<li>SANS: GCIH (Incident Handling)</li>
+			<li>SANS: GCIA (Incident Analysis)</li>
+			<li>ECC: Certified Ethical Hacker</li>
+          </ul>
+        </div>
+        <div class="col-6 card pad">
+          <h3>Skills Matrix</h3>
+          <ul>
+            <li><strong>Offensive:</strong> Enumeration, Initial Access, Priv-Esc, Lateral Movement</li>
+            <li><strong>Cloud:</strong> Azure AD, Entra ID, IAM hygiene, conditional access</li>
+            <li><strong>Detection:</strong> Sigma, KQL, Sysmon, log enrichment</li>
+            <li><strong>Tooling:</strong> ZAP, Nmap, BloodHound, Python, Bash</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume">
+      <h2>Résumé - Not Ready</h2>
+      <p><a class="btn" href="#" aria-label="Download resume PDF">Download PDF</a></p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p><a class="btn" href="mailto:zimmer.cybersec@proton.me">zimmer.cybersec@proton.me</a></p>
+	  <p><a class="btn" href="https://www.linkedin.com/in/kyle-zimmer-034060234/">LinkedIn - Kyle Zimmer</a></p>
+    </section>
+
+    <section aria-labelledby="site-notes" class="card pad">
+      <h2 id="site-notes">Site Notes</h2>
+      <ul>
+        <li>Replace placeholder links with your LinkedIn, YouTube, and GitHub.</li>
+        <li>Create a <span class="kbd">/projects</span> page later if you outgrow this single page.</li>
+        <li>Each project should include: objective, environment, steps, detections, ATT&CK mapping, mitigations, and a short <em>executive summary</em>.</li>
+        <li>Add a privacy-respecting analytics script only if needed (e.g., Plausible); avoid heavy trackers.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="two">
+      <div>
+        <strong>Last updated:</strong> <span id="last-updated">—</span>
+      </div>
+      <div style="text-align:right">
+        © <span id="year"></span> Kyle Zimmer
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set footer dates
+    const d = new Date();
+    document.getElementById('year').textContent = d.getFullYear();
+    document.getElementById('last-updated').textContent = d.toLocaleDateString();
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth'});
+          history.pushState(null, '', '#' + id);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
