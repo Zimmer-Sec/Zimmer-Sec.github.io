@@ -1,271 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kyle Zimmer — Portfolio</title>
-  <meta name="description" content="Cybersecurity portfolio by Kyle Zimmer." />
-  <meta name="author" content="Kyle Zimmer" />
-  <meta property="og:title" content="Kyle Zimmer — Portfolio" />
-  <meta property="og:description" content="Security research and practical write-ups." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
-  <style>
-    :root{
-      --bg: #0b0f17;
-      --card: #121826;
-      --text: #e6edf6;
-      --muted: #9fb0c9;
-      --accent: #7cc4ff;
-      --accent-2: #9af9d8;
-      --border: #1e2a3d;
-      --code: #0f1724;
-      --link: #b6d7ff;
-      --warn: #ffcd70;
-      --ok: #6ff3c1;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    *{box-sizing:border-box}
-    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height:1.6;}
-    a{ color: var(--link); text-decoration: none; }
-    a:hover{ text-decoration: underline; }
-    .container{ max-width: 1100px; margin: 0 auto; padding: 24px; }
-    header{ position: sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,15,23,.85); border-bottom:1px solid var(--border); z-index: 50; }
-    nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
-    nav .right a{ margin-left: 14px; padding:8px 12px; border:1px solid var(--border); border-radius: 999px; }
-    nav .right a:hover{ background: var(--card); text-decoration: none; }
-    h1,h2,h3{ line-height:1.25; margin: 0 0 10px 0; }
-    h1{ font-size: clamp(28px, 4vw, 44px); }
-    h2{ font-size: clamp(22px, 3vw, 30px); margin-top: 40px; }
-    p.lead{ font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); margin: 8px 0 0 0; }
-    .hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center; padding-top: 28px;}
-    .card{ background: var(--card); border:1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); }
-    .pad{ padding: 20px; }
-    .badges{ display:flex; flex-wrap: wrap; gap:10px; margin-top: 8px;}
-    .badge{ background: #0d1422; border:1px solid var(--border); padding:6px 10px; border-radius:999px; color:var(--muted); }
-    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .col-6{ grid-column: span 6; }
-    .col-4{ grid-column: span 4; }
-    .col-12{ grid-column: span 12; }
-    .list{ display:flex; flex-direction: column; gap: 12px; }
-    .item{ padding:14px; border:1px solid var(--border); border-radius:14px; background: #0c121f; }
-    .item h3{ margin-bottom: 4px; }
-    .meta{ color: var(--muted); font-size: 14px; }
-    .kbd{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background: var(--code); border:1px solid var(--border); padding: 2px 6px; border-radius: 6px; }
-    footer{ margin: 40px 0 20px; color: var(--muted); border-top:1px solid var(--border); padding-top: 18px; }
-    .pill{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding: 10px 14px; border-radius: 12px; }
-    .btn{ display:inline-block; padding:10px 14px; border:1px solid var(--border); border-radius:12px; background: #0c141f; }
-    .btn:hover{ background:#0f1726; text-decoration:none; }
-    .two{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .video{ aspect-ratio: 16/9; width:100%; border:1px solid var(--border); border-radius:14px; background:#000; }
-    .timeline{ border-left:2px solid var(--border); padding-left: 16px; }
-    .timeline .t{ margin-bottom: 12px; }
-    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
-    @media (max-width: 900px){
-      .hero{ grid-template-columns: 1fr; }
-      .col-6{ grid-column: span 12; }
-      .col-4{ grid-column: span 12; }
-      nav{ flex-wrap:wrap; gap:8px; }
-    }
-    @media print {
-      header, .btn, .video { display: none !important; }
-      body { background: #fff; color:#111; }
-      .card { box-shadow: none; }
-      a { color: #000; text-decoration: underline; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyle Zimmer - Cybersecurity Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <div class="container">
-      <nav aria-label="Primary">
-        <div class="left">
-          <span class="pill">🛡️ <strong>Kyle Zimmer</strong> — Portfolio</span>
-        </div>
-        <div class="right" role="navigation">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#labs">Labs</a>
-          <a href="#writeups">Write-ups</a>
-          <a href="#talks">Talks</a>
-          <a href="#certs">Certs</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+    <canvas id="stars-canvas"></canvas>
 
-  <main class="container">
-    <section class="hero">
-      <div class="card pad">
-        <h1>Weclome!</h1>
-        <p class="lead">
-          This page serves as my public portfolio that I'll be continuously updating to reflect my personal work. Please visit my GitHub profile to learn more and feel free to reach out via my contact information.
-        </p>
-        <p style="margin-top:14px">
-          <a class="btn" href="https://github.com/Zimmer-Sec" target="_blank" rel="noopener">GitHub Profile</a>
-        </p>
-      </div>
-      <aside class="card pad">
-        <h2 id="about">About</h2>
-        <p>
-          After nearly a decade in the cyber threat industry, I focus on expanding my knowledge of exploitation, python development,
-          and security research.
-        </p>
-        <ul class="list" aria-label="Quick facts">
-          <li class="item">
-            <strong>Target roles:</strong> Red Team Operator, Network Security Engineer, Adversary Emulation
-          </li>
-          <li class="item">
-            <strong>Currently learning:</strong> C2 frameworks, attack paths, malware analysis
-          </li>
-          <li class="item">
-            <strong>Writing focus:</strong> Practical lab notes and concise threat reports
-          </li>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <span id="typing-text"></span>
+            <span class="cursor">|</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT ME</a></li>
+            <li><a href="#projects">PROJECTS</a></li>
+            <li><a href="#contact">CONTACT</a></li>
         </ul>
-      </aside>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="container hero">
+            <div class="hero-image">
+                <img src="zimmersec.png" alt="Kyle Zimmer" onerror="this.src='zimmersec.jpg'">
+            </div>
+            <div class="hero-content">
+                <h1>KYLE ZIMMER</h1>
+                <h2>Cybersecurity | Threat Intelligence | Network Operations</h2>
+                <p>Protecting digital landscapes since 2018. From Minnesota to the National Capital Region, now defending networks in San Antonio, Texas.</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn">EXPLORE MY WORK</a>
+                    <a href="#" class="btn btn-white">DOWNLOAD RESUME</a>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- About Me Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>ABOUT ME</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-left">
+                    <h3>CYBER OPERATIONS SPECIALIST</h3>
+                    <p>My name is Kyle Zimmer and I've worked in the Cyber Operations industry since 2018. I've held positions as a security analyst in the Cyber Threat Intelligence world, as well as the offensive and defensive network analysis fields. I have an acute mind for privacy and I'm always interested in working on new projects that challenge me.</p>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="experience-section">
+                        <h4>Experience Highlights</h4>
+                        <div class="experience-item" data-job="7+ years of hands-on experience in cybersecurity operations, from junior analyst to senior specialist roles across multiple domains.">
+                            7+ Years in Cybersecurity
+                        </div>
+                        <div class="experience-item" data-job="Learned the core foundations to cyber persona, threat, and operations analysis to discover and report threat actor and APT activity analysis.">
+                            Digital Network Exploitation Analyst
+                        </div>
+                        <div class="experience-item" data-job="Led industry partnerships with over 45 entities, merging CTI threat intelligence findings to author industry-level reporting.">
+                            Computer Network Defense Analyst
+                        </div>
+                        <div class="experience-item" data-job="Managed 45 analysts to conduct network operations analysis in support of cross-domain cyber operations.">
+                            Section Chief, Network Analysis
+                        </div>
+                        <div class="experience-item" data-job="Specialized in operations planning, data analysis, multi-organizational mission management, and .">
+                            Exploitation Analyst
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="experience-section">
+                        <h4>Geographic Experience</h4>
+                        <p class="location-text">Northern Minnesota → National Capital Region → San Antonio, Texas</p>
+                    </div>
+                </div>
+
+                <div class="about-right">
+                    <div class="certifications-section">
+                        <h4>Certifications</h4>
+                        <div class="cert-item">GIAC Incident Handling and Hacker Tools (GCIH)</div>
+						<div class="cert-item">GIAC Intrusion Analysis (GCIA)</div>
+                        <div class="cert-item">ECC Certified Ethical Hacker (CEH)</div>
+						<div class="cert-item">ECC Computer Hacking Foresnics Investigator (CHFI)</div>
+                        <div class="cert-item">Comptia Security+</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="certifications-section">
+                        <h4>Past Training & Education</h4>
+                        <div class="cert-item">Masters in Cyber Operations from UMGC</div>
+						<div class="cert-item">B.S Computer Networking/Security from UMGC</div>
+                        <div class="cert-item">SANS FOR508 - Advanced Forensics Analysis</div>
+                        <div class="cert-item">[Numerous NCU Courses]</div> 
+						<div class="cert-item">CYBR2111</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
     <section id="projects">
-      <h2>Featured Projects</h2>
-      <div class="grid">
-        <article class="col-6 card pad">
-          <h3>Adversary Emulation: <span class="meta">“FIN-style” web app intrusion chain</span></h3>
-          <p>Multi-stage engagement against an Azure-hosted app: discovery → initial access via misconfig → lateral movement using token replay → exfiltration. Full ATT&CK mapping and detections.</p>
-          <p class="meta">Stack: Python, Azure, Burp/ZAP, BloodHound/ARO</p>
-          <p>
-            <a class="btn" href="#" aria-label="Read the project case study">Case Study</a>
-            <a class="btn" href="#" aria-label="View the source on GitHub">GitHub</a>
-          </p>
-        </article>
-        <article class="col-6 card pad">
-          <h3>Detection Evasion Lab: <span class="meta">EDR-safe simulation</span></h3>
-          <p>Built a home lab to evaluate common tradecraft (LOLBins, AMSI bypass research review) with benign payloads, documenting telemetry and defender guidance.</p>
-          <p class="meta">Stack: Windows, Sysmon, Sigma, KQL</p>
-          <p>
-            <a class="btn" href="#" aria-label="Read the lab write-up">Write-up</a>
-            <a class="btn" href="#" aria-label="Open the lab repo">GitHub</a>
-          </p>
-        </article>
-      </div>
-    </section>
+        <div class="container">
+            <div class="section-header">
+                <h2>PROJECTS & LABS</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Threat Intelligence Platform</h3>
+                    <p>Developed an automated threat intelligence aggregation platform that collects, correlates, and analyzes IOCs from multiple sources in real-time.</p>
+                    <div class="ttps-section">
+                        <strong>TTPs Used:</strong>
+                        <span class="ttp-tag">OSINT Collection</span>
+                        <span class="ttp-tag">API Integration</span>
+                        <span class="ttp-tag">Data Correlation</span>
+                        <span class="ttp-tag">Python Automation</span>
+                    </div>
+                    <a href="FILL ME IN" class="project-link btn">VIEW PROJECT →</a>
+                </div>
 
-    <section id="labs">
-      <h2>Lab Portfolio</h2>
-      <div class="grid">
-        <div class="col-4 card pad">
-          <h3>To Come: Environment Development</h3>
-          <p>Description...</p>
+                <div class="project-card">
+                    <h3>Home Security Operations Center</h3>
+                    <p>Built a comprehensive home lab SOC environment with SIEM, IDS/IPS, network monitoring, and incident response capabilities for continuous learning.</p>
+                    <div class="ttps-section">
+                        <strong>TTPs Used:</strong>
+                        <span class="ttp-tag">SIEM Configuration</span>
+                        <span class="ttp-tag">Log Analysis</span>
+                        <span class="ttp-tag">Network Monitoring</span>
+                        <span class="ttp-tag">Splunk/ELK Stack</span>
+                    </div>
+                    <a href="FILL ME IN" class="project-link btn">VIEW PROJECT →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Malware Analysis Sandbox</h3>
+                    <p>Created an isolated sandbox environment for safe malware analysis, featuring automated dynamic analysis and static code examination tools.</p>
+                    <div class="ttps-section">
+                        <strong>TTPs Used:</strong>
+                        <span class="ttp-tag">Reverse Engineering</span>
+                        <span class="ttp-tag">Behavioral Analysis</span>
+                        <span class="ttp-tag">Virtualization</span>
+                        <span class="ttp-tag">IDA Pro/Ghidra</span>
+                    </div>
+                    <a href="FILL ME IN" class="project-link btn">VIEW PROJECT →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Red Team Attack Simulation</h3>
+                    <p>Designed and executed full-scope red team exercises simulating APT campaigns to test organizational defenses and incident response procedures.</p>
+                    <div class="ttps-section">
+                        <strong>TTPs Used:</strong>
+                        <span class="ttp-tag">Social Engineering</span>
+                        <span class="ttp-tag">Lateral Movement</span>
+                        <span class="ttp-tag">Privilege Escalation</span>
+                        <span class="ttp-tag">MITRE ATT&CK</span>
+                    </div>
+                    <a href="FILL ME IN" class="project-link btn">VIEW PROJECT →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Privacy Compliance Toolkit</h3>
+                    <p>Developed a comprehensive toolkit for privacy compliance assessments, including automated data discovery, classification, and GDPR/CCPA gap analysis.</p>
+                    <div class="ttps-section">
+                        <strong>TTPs Used:</strong>
+                        <span class="ttp-tag">Data Discovery</span>
+                        <span class="ttp-tag">Risk Assessment</span>
+                        <span class="ttp-tag">Compliance Mapping</span>
+                        <span class="ttp-tag">Privacy Engineering</span>
+                    </div>
+                    <a href="FILL ME IN" class="project-link btn">VIEW PROJECT →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Network Defense Lab</h3>
+                    <p>Constructed a fully functional network defense lab with firewalls, intrusion detection systems, and honeypots to study attack patterns and defensive strategies.</p>
+                    <div class="ttps-section">
+                        <strong>TTPs Used:</strong>
+                        <span class="ttp-tag">Firewall Rules</span>
+                        <span class="ttp-tag">IDS/IPS Tuning</span>
+                        <span class="ttp-tag">Honeypot Deployment</span>
+                        <span class="ttp-tag">Traffic Analysis</span>
+                    </div>
+                    <a href="FILL ME IN" class="project-link btn">VIEW PROJECT →</a>
+                </div>
+            </div>
         </div>
-        <div class="col-4 card pad">
-          <h3>To Come: CVE Usage </h3>
-          <p>Description...</p>
-        </div>
-      </div>
     </section>
 
-    <section id="writeups">
-      <h2>Write-ups & Research Notes</h2>
-      <div class="list">
-        <article class="item">
-          <h3>Threat Report: Placeholder</h3>
-          <p>Summary of Threat Report 1</p>
-          <p class="meta">Reading time: 6 min · <span class="kbd">PDF</span></p>
-        </article>
-        <article class="item">
-          <h3>Threat Report: Placeholder 2</h3>
-          <p>Summary of Threat Report 2.</p>
-          <p class="meta">Reading time: 6 min · <span class="kbd">Post</span></p>
-        </article>
-      </div>
-    </section>
-
-    <section id="talks" class="two">
-      <div>
-        <h2>Talks & Videos</h2>
-        <p> To do: Add short demo videos or conference lightning talks.</p>
-        <div class="video" role="img" aria-label="YouTube video placeholder">
-          <!-- Replace with your embed:
-          <iframe class="video" src="https://www.youtube.com/embed/VIDEO_ID" title="YouTube video" frameborder="0" allowfullscreen></iframe>
-          -->
-        </div>
-      </div>
-      <aside class="card pad">
-        <h3>Video Topics:</h3>
-        <ul>
-          <li>Genesis - Fill in.</li>
-          <li>There will be more</li>
-        </ul>
-      </aside>
-    </section>
-
-    <section id="certs">
-      <h2>Certifications & Skills</h2>
-      <div class="grid">
-        <div class="col-6 card pad">
-          <h3>Certifications</h3>
-          <ul>
-            <li>Comptia: Security+</li>
-			<li>SANS: GCIH (Incident Handling)</li>
-			<li>SANS: GCIA (Incident Analysis)</li>
-			<li>ECC: Certified Ethical Hacker</li>
-          </ul>
-        </div>
-        <div class="col-6 card pad">
-          <h3>Skills Matrix</h3>
-          <ul>
-            <li><strong>Offensive:</strong> Enumeration, Initial Access, Priv-Esc, Lateral Movement</li>
-            <li><strong>Cloud:</strong> Azure AD, Entra ID, IAM hygiene, conditional access</li>
-            <li><strong>Detection:</strong> Sigma, KQL, Sysmon, log enrichment</li>
-            <li><strong>Tooling:</strong> ZAP, Nmap, BloodHound, Python, Bash</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="resume">
-      <h2>Résumé - Not Ready</h2>
-      <p><a class="btn" href="#" aria-label="Download resume PDF">Download PDF</a></p>
-    </section>
-
+    <!-- Contact Section -->
     <section id="contact">
-      <h2>Contact</h2>
-      <p><a class="btn" href="mailto:zimmer.cybersec@proton.me">zimmer.cybersec@proton.me</a></p>
-	  <p><a class="btn" href="https://www.linkedin.com/in/kyle-zimmer-034060234/">LinkedIn - Kyle Zimmer</a></p>
+        <div class="container contact-content">
+            <h2>LET'S COLLABORATE</h2>
+            <div class="contact-description">
+                <p>I'm passionate about tackling complex cybersecurity challenges and continuously pushing the boundaries of what's possible in threat intelligence, network defense, and privacy engineering. With over six years of experience spanning offensive and defensive operations, I bring a comprehensive understanding of the threat landscape and the technical expertise to build robust security solutions.</p>
+                
+                <p>I'm always eager to work on challenging projects that test my skills and expand my knowledge. Whether it's developing innovative security tools, conducting advanced threat analysis, or architecting privacy-preserving systems, I thrive on problems that require creative thinking and technical depth.</p>
+                
+                <p>I'm happy to discuss opportunities for collaboration, consulting engagements, or full-time positions where I can make a meaningful impact. The future of cybersecurity is evolving rapidly, and I'm excited to be part of shaping it through continuous learning, innovative solutions, and dedication to protecting digital assets.</p>
+                
+                <p>Let's connect and explore how we can work together to build a more secure digital future.</p>
+            </div>
+
+            <div class="contact-buttons">
+                <a href="https://www.linkedin.com/in/kyle-zimmer-034060234/" class="btn">LINKEDIN</a>
+                <a href="https://www.youtube.com/@ZimmerSec" class="btn">YOUTUBE</a>
+                <a href="mailto:zimmercybersec@proton.me" class="btn">EMAIL</a>
+                <a href="https://github.com/Zimmer-Sec" class="btn">GITHUB</a>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer class="container">
-    <div class="two">
-      <div>
-        <strong>Last updated:</strong> <span id="last-updated">—</span>
-      </div>
-      <div style="text-align:right">
-        © <span id="year"></span> Kyle Zimmer
-      </div>
-    </div>
-  </footer>
+    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
 
-  <script>
-    // Set footer dates
-    const d = new Date();
-    document.getElementById('year').textContent = d.getFullYear();
-    document.getElementById('last-updated').textContent = d.toLocaleDateString();
-    // Smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if(el){
-          e.preventDefault();
-          el.scrollIntoView({behavior:'smooth'});
-          history.pushState(null, '', '#' + id);
-        }
-      });
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
-
 </html>
-
