@@ -2,8 +2,8 @@
 const canvas = document.getElementById('stars-canvas');
 const ctx = canvas.getContext('2d');
 
-// Set higher resolution for canvas
-const dpr = window.devicePixelRatio || 1;
+// Use moderate resolution multiplier instead of full DPR
+const dpr = Math.min(window.devicePixelRatio || 1, 2);
 canvas.width = window.innerWidth * dpr;
 canvas.height = document.documentElement.scrollHeight * dpr;
 canvas.style.width = window.innerWidth + 'px';
@@ -11,16 +11,16 @@ canvas.style.height = document.documentElement.scrollHeight + 'px';
 ctx.scale(dpr, dpr);
 
 const stars = [];
-const numStars = 350;
+const numStars = 200;
 
 class Star {
     constructor() {
         this.x = Math.random() * window.innerWidth;
         this.y = Math.random() * document.documentElement.scrollHeight;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.8;
-        this.speedY = (Math.random() - 0.5) * 0.8;
-        this.opacity = Math.random() * 0.6 + 0.4;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 1.2;
+        this.speedY = (Math.random() - 0.5) * 1.2;
+        this.opacity = Math.random() * 0.5 + 0.5;
     }
 
     update() {
@@ -33,12 +33,9 @@ class Star {
 
     draw() {
         ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-        ctx.shadowBlur = 2;
-        ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0;
     }
 }
 
@@ -48,20 +45,23 @@ for (let i = 0; i < numStars; i++) {
 }
 
 function connectStars() {
+    const maxConnections = 3;
     for (let i = 0; i < stars.length; i++) {
-        for (let j = i + 1; j < stars.length; j++) {
+        let connections = 0;
+        for (let j = i + 1; j < stars.length && connections < maxConnections; j++) {
             const dx = stars[i].x - stars[j].x;
             const dy = stars[i].y - stars[j].y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance < 150) {
-                const opacity = (1 - distance / 150) * 0.4;
+            if (distance < 120) {
+                const opacity = (1 - distance / 120) * 0.35;
                 ctx.strokeStyle = `rgba(74, 158, 255, ${opacity})`;
-                ctx.lineWidth = 1.5;
+                ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(stars[i].x, stars[i].y);
                 ctx.lineTo(stars[j].x, stars[j].y);
                 ctx.stroke();
+                connections++;
             }
         }
     }
@@ -84,7 +84,7 @@ animate();
 
 // Update canvas size on window resize
 window.addEventListener('resize', () => {
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = window.innerWidth * dpr;
     canvas.height = document.documentElement.scrollHeight * dpr;
     canvas.style.width = window.innerWidth + 'px';
@@ -93,13 +93,17 @@ window.addEventListener('resize', () => {
 });
 
 // Update canvas height on scroll (for dynamic content)
+let scrollTimeout;
 window.addEventListener('scroll', () => {
-    if (document.documentElement.scrollHeight > parseInt(canvas.style.height)) {
-        const dpr = window.devicePixelRatio || 1;
-        canvas.height = document.documentElement.scrollHeight * dpr;
-        canvas.style.height = document.documentElement.scrollHeight + 'px';
-        ctx.scale(dpr, dpr);
-    }
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        if (document.documentElement.scrollHeight > parseInt(canvas.style.height)) {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.height = document.documentElement.scrollHeight * dpr;
+            canvas.style.height = document.documentElement.scrollHeight + 'px';
+            ctx.scale(dpr, dpr);
+        }
+    }, 100);
 });
 
 // Typing Animation
